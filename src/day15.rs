@@ -1,8 +1,8 @@
 use crate::intcode::Program;
 use hashbrown::HashSet;
-use std::collections::VecDeque;
 use itertools::Itertools;
 use pathfinding::directed::bfs::bfs;
+use std::collections::VecDeque;
 
 struct Robot {
     x: isize,
@@ -106,12 +106,18 @@ fn longest_path(map: &HashSet<(isize, isize)>, start: (isize, isize)) -> usize {
     let mut to_visit = VecDeque::from([(0, start)]);
     let mut max_steps = 0;
     while let Some((n_steps, (x, y))) = to_visit.pop_front() {
-        if n_steps > max_steps { max_steps = n_steps; }
-        if visited.contains(&(x, y)) { continue; }
+        if n_steps > max_steps {
+            max_steps = n_steps;
+        }
+        if visited.contains(&(x, y)) {
+            continue;
+        }
         visited.insert((x, y));
         for (dx, dy) in [(0, -1), (0, 1), (-1, 0), (1, 0)] {
             let (nx, ny) = (x + dx, y + dy);
-            if !map.contains(&(nx, ny)) { continue; }
+            if !map.contains(&(nx, ny)) {
+                continue;
+            }
             to_visit.push_back((n_steps + 1, (nx, ny)));
         }
     }
