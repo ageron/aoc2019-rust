@@ -1,7 +1,7 @@
+use hashbrown::HashMap;
 use itertools::Itertools;
 use pathfinding::directed::astar::astar;
 use pathfinding::directed::dijkstra::dijkstra;
-use std::collections::HashMap;
 
 fn get_positions(maze: &[Vec<u8>]) -> HashMap<u8, (usize, usize)> {
     let mut positions = HashMap::new();

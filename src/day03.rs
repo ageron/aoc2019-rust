@@ -1,5 +1,5 @@
+use hashbrown::HashMap;
 use regex::Regex;
-use std::collections::HashMap;
 
 type Path = Vec<(char, usize)>;
 

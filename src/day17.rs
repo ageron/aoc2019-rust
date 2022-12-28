@@ -1,7 +1,7 @@
 use itertools::Itertools;
 
 use super::intcode::{Program, ProgramState::*};
-use std::collections::HashSet;
+use hashbrown::HashSet;
 
 struct AsciiRobot {
     brain: Program,

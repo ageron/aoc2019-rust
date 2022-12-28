@@ -1,5 +1,5 @@
+use hashbrown::HashSet;
 use std::cmp::Ordering;
-use std::collections::HashSet;
 
 pub fn gcd(a: usize, b: usize) -> usize {
     if a == b {

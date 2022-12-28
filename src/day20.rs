@@ -1,5 +1,5 @@
+use hashbrown::HashMap;
 use pathfinding::directed::bfs::bfs;
-use std::collections::HashMap;
 
 type Portals = HashMap<(usize, usize), (usize, usize)>;
 type NamedLocations = HashMap<String, (usize, usize)>;

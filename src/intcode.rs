@@ -1,4 +1,5 @@
-use std::collections::{HashMap, VecDeque};
+use hashbrown::HashMap;
+use std::collections::VecDeque;
 
 #[derive(Eq, PartialEq, Copy, Clone)]
 pub enum ProgramState {

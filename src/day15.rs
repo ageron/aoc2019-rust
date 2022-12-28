@@ -1,7 +1,8 @@
 use crate::intcode::Program;
+use hashbrown::HashSet;
+use std::collections::VecDeque;
 use itertools::Itertools;
 use pathfinding::directed::bfs::bfs;
-use std::collections::HashSet;
 
 struct Robot {
     x: isize,
@@ -101,31 +102,20 @@ fn shortest_path_length(
 }
 
 fn longest_path(map: &HashSet<(isize, isize)>, start: (isize, isize)) -> usize {
-    let mut to_visit: HashSet<(isize, isize)> = HashSet::new();
     let mut visited: HashSet<(isize, isize)> = HashSet::new();
-    let mut n_steps = 0;
-    to_visit.insert(start);
-    while !to_visit.is_empty() {
-        let mut next_to_visit: HashSet<(isize, isize)> = HashSet::new();
-        n_steps += 1;
-        for (x, y) in &to_visit {
-            visited.insert((*x, *y));
-            for (dx, dy) in [(0, -1), (0, 1), (-1, 0), (1, 0)] {
-                let nx = x + dx;
-                let ny = y + dy;
-                if visited.contains(&(nx, ny))
-                    || to_visit.contains(&(nx, ny))
-                    || next_to_visit.contains(&(nx, ny))
-                    || !map.contains(&(nx, ny))
-                {
-                    continue;
-                }
-                next_to_visit.insert((nx, ny));
-            }
+    let mut to_visit = VecDeque::from([(0, start)]);
+    let mut max_steps = 0;
+    while let Some((n_steps, (x, y))) = to_visit.pop_front() {
+        if n_steps > max_steps { max_steps = n_steps; }
+        if visited.contains(&(x, y)) { continue; }
+        visited.insert((x, y));
+        for (dx, dy) in [(0, -1), (0, 1), (-1, 0), (1, 0)] {
+            let (nx, ny) = (x + dx, y + dy);
+            if !map.contains(&(nx, ny)) { continue; }
+            to_visit.push_back((n_steps + 1, (nx, ny)));
         }
-        to_visit = next_to_visit;
     }
-    n_steps - 1
+    max_steps - 1
 }
 
 pub fn run(input: &str) {

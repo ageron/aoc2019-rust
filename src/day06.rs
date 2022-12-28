@@ -1,5 +1,5 @@
+use hashbrown::HashMap;
 use itertools::Itertools;
-use std::collections::HashMap;
 
 fn count_orbits(parent_to_child: &HashMap<&str, Vec<&str>>, parent: &str, level: usize) -> usize {
     level

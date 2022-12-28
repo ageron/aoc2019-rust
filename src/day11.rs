@@ -1,5 +1,5 @@
+use hashbrown::HashMap;
 use itertools::Itertools;
-use std::collections::HashMap;
 
 use super::intcode::{Program, ProgramState::*};
 

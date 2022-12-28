@@ -1,5 +1,6 @@
+use hashbrown::HashMap;
 use itertools::Itertools;
-use std::collections::{HashMap, VecDeque};
+use std::collections::VecDeque;
 use std::ops::Range;
 
 #[derive(Eq, PartialEq)]

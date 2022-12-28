@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use hashbrown::HashMap;
 
 // this version of the intcode computer turned out to be the final one, so I
 // exported it to a separate module so I can reuse it later:
